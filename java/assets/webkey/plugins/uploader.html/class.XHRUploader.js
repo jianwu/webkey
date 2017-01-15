@@ -322,14 +322,14 @@ Class.create("XHRUploader", {
 			return;
 		}
 		if(this.mask){
-			var ext = getFileExtension(file.fileName);
+			var ext = getFileExtension(file.name);
 			if(!this.mask.include(ext)){
 				alert(MessageHash[367] + this.mask.join(', '));
 				return;
 			}
 		}
 		// GET VALUE FROM FILE OBJECT
-		var label = file.fileName;		
+		var label = file.name;		
 		var maxLength = 63;
 		if(label.length > maxLength){
 			label = label.substr(0,20) + '[...]' + label.substr(label.length-(maxLength-20), label.length);
@@ -460,7 +460,7 @@ Class.create("XHRUploader", {
     	item.statusText.update('[loading]');
 		
     	var auto_rename = false;
-		if(this.crtContext.fileNameExists(item.file.fileName))
+		if(this.crtContext.fileNameExists(item.file.name))
 		{
 			var behaviour = this.optionPane.getExistingBehaviour();
 			if(behaviour == 'rename'){
@@ -518,8 +518,8 @@ Class.create("XHRUploader", {
         xhr.setRequestHeader("If-Modified-Since", "Mon, 26 Jul 1997 05:00:00 GMT");
         xhr.setRequestHeader("Cache-Control", "no-cache");
         xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-        xhr.setRequestHeader("X-File-Name", item.file.fileName);
-        xhr.setRequestHeader("X-File-Size", item.file.fileSize);
+        xhr.setRequestHeader("X-File-Name", item.file.name);
+        xhr.setRequestHeader("X-File-Size", item.file.size);
         //xhr.setRequestHeader("Content-Type", "multipart/form-data");
 //	if (item.file.getAsBinary)
 //		xhr.send(item.file.getAsBinary());
